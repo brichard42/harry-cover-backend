@@ -2,10 +2,10 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { OllamaModule } from './ollama/ollama.module';
-import { CurriculumModule } from './curriculum/curriculum.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [OllamaModule, CurriculumModule],
+  imports: [ConfigModule.forRoot(), OllamaModule],
   controllers: [AppController],
   providers: [AppService],
 })
