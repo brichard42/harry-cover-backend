@@ -15,7 +15,7 @@ export class OllamaService {
     model: this.model,
     baseUrl: this.baseUrl,
     temperature: 1,
-    verbose: true,
+    verbose: process.env.AI_VERBOSE === 'true' || false,
   };
 
   private readonly prompt = ChatPromptTemplate.fromTemplate(`
