@@ -23,6 +23,8 @@ Harry Cover is a platform that generates cover letters based on a CV, job descri
 
 - **Ollama**: Ensure Ollama is installed.
 - **Model**: At least one model should be pulled and served.
+- **Node.Js**: >= 16
+- **NestJS Cli**: ```npm i -g @nestjs/cli```
 
 ### Environment Variables
 
