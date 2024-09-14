@@ -20,7 +20,9 @@ export class OllamaService {
 
   private readonly prompt = ChatPromptTemplate.fromTemplate(`
     Write a Cover Letter for the Job Mentioned in the Job Description.
-    Only write the letters body.
+    Only write the letters content.
+    Don't leave placeholders (eg: 'Dear [Hiring Manager name]',
+    use generic words if needed (eg: 'Dear hiring manager')).
     Don't make any comments.
     Use the informations in the resume passed in your context.
     Context: {context}

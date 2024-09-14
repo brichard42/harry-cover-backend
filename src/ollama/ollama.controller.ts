@@ -18,6 +18,10 @@ export class OllamaController {
     @Body('jobDescription') jobDescription: string,
     @UploadedFile() resumeFile: Express.Multer.File,
   ) {
+    console.info(
+      `\x1b[1;41m🚀 BRICHARD-LOGGER\x1b[0m ~  | OllamaController | jobDescription:`,
+      jobDescription,
+    );
     return this.ollamaService.createOllamaStream(jobDescription, resumeFile);
   }
 }
