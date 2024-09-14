@@ -31,3 +31,8 @@ Create a `.env` file with the following variables:
 - `PORT`: Application port (e.g., `3001`)
 - `OLLAMA_URL`: Your Ollama local server URL (e.g., `http://127.0.0.1:11434`)
 - `OLLAMA_MODEL`: The LLM model you want to use (e.g., `gemma2:2b`)
+
+## Additional Information
+
+- **Model Choice**: Using `gemma2:2b` locally because it offers good performance and can run on CPU.
+- **Hosting**: Hosting the model with Cloudflare so the frontend can access it.
