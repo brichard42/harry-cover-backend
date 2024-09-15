@@ -9,6 +9,10 @@ async function bootstrap() {
   app.useGlobalInterceptors(new ResponseInterceptor());
   app.useGlobalFilters(new GlobalExceptionFilter());
 
+  app.enableCors({
+    origin: [ 'http://localhost:3000', 'https://harry-cover-frontend.vercel.app/'],
+  });
+
   await app.listen(process.env.PORT || 3001);
 }
 bootstrap();
