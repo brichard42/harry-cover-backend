@@ -3,10 +3,11 @@ import { Ollama } from '@langchain/ollama';
 import { ChatPromptTemplate } from '@langchain/core/prompts';
 import { PDFLoader } from '@langchain/community/document_loaders/fs/pdf';
 import { createStuffDocumentsChain } from 'langchain/chains/combine_documents';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class OllamaService {
-  constructor() {}
+  constructor() { }
 
   private readonly model = process.env.OLLAMA_MODEL;
   private readonly baseUrl = process.env.OLLAMA_URL;
@@ -49,14 +50,23 @@ export class OllamaService {
     const context = await loader.load();
 
     //USE CHEERIO TO SCRAPE WEBSITES
-
-    const stream = await chain.stream({
-      context,
-      input: jobDescription,
-    });
-
-    for await (const message of stream) {
-      console.log(message);
-    }
+    return new Observable(
+      (subscriber) => {
+        chain.stream({
+          context,
+          input: jobDescription,
+        }).then(
+          async (stream) => {
+            for await (const message of stream) {
+              subscriber.next(message);
+            }
+            subscriber.complete();
+          },
+          (error) => {
+            subscriber.error(error);
+          },
+        )
+      }
+    )
   }
 }
